@@ -1,0 +1,105 @@
+[
+  {
+    "kind": "Group",
+    "metadata": {
+      "name": "a-team"
+    },
+    "relations": [
+      {
+        "type": "childOf",
+        "targetRef": "group:default/parent-team",
+        "target": {
+          "kind": "group",
+          "namespace": "default",
+          "name": "parent-team"
+        }
+      },
+      {
+        "type": "hasMember",
+        "targetRef": "user:default/john.doe",
+        "target": {
+          "kind": "user",
+          "namespace": "default",
+          "name": "john.doe"
+        }
+      }
+    ]
+  },
+  {
+    "kind": "User",
+    "metadata": {
+      "name": "john.doe"
+    },
+    "spec": {
+      "profile": {
+        "email": "john.doe@example.com"
+      }
+    },
+    "relations": [
+      {
+        "type": "memberOf",
+        "targetRef": "group:default/a-team",
+        "target": {
+          "kind": "group",
+          "namespace": "default",
+          "name": "a-team"
+        }
+      }
+    ]
+  },{
+    "kind": "User",
+    "metadata": {
+      "name": "d.rector"
+    },
+    "spec": {
+      "profile": {
+        "email": "d.rector@example.com"
+      }
+    },
+    "relations": [
+      {
+        "type": "memberOf",
+        "targetRef": "group:default/parent-team",
+        "target": {
+          "kind": "group",
+          "namespace": "default",
+          "name": "parent-team"
+        }
+      }
+    ]
+  },{
+        "kind": "Group",
+        "metadata": {
+            "name": "parent-team"
+        },
+        "relations": [
+            {
+                "type": "childOf",
+                "targetRef": "group:default/grandpa-team",
+                "target": {
+                    "kind": "group",
+                    "namespace": "default",
+                    "name": "grandpa-team"
+                }
+            },
+            {
+                "type": "hasMember",
+                "targetRef": "user:default/d.rector",
+                "target": {
+                    "kind": "user",
+                    "namespace": "default",
+                    "name": "d.rector"
+                }
+            },
+            {
+                "type": "parentOf",
+                "targetRef": "group:default/a-team",
+                "target": {
+                    "kind": "group",
+                    "namespace": "default",
+                    "name": "a-team"
+                }
+            }
+        ]
+    }
+]
